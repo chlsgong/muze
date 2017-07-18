@@ -38,6 +38,7 @@ app.get('/verification/check', function(req, res) {
                 res.status(error.response.status).json({valid_code: false})
             }
             else {
+                // check if user exists first
                 db.insertUser(phoneNumber, function(userId, err) {
                     if(err) {
                         res.sendStatus(500)
@@ -57,13 +58,12 @@ app.get('/verification/check', function(req, res) {
 app.use('/playlist', bodyParser.json())
 app.post('/playlist', function(req, res) {
     var creatorId = req.body.creator_id
-    var users = req.body.users
     var title = req.body.title
     var playlist = req.body.playlist
     var size = req.body.size
 
-    if(creator && users && title && playlist && size) {
-        db.insertPlaylist(creatorId, users, title, playlist, size, function(playlistId, err) {
+    if(creatorId && title && playlist && size) {
+        db.insertPlaylist(creatorId, title, playlist, size, function(playlistId, err) {
             if(err) {
                 res.sendStatus(500)
             }
@@ -83,7 +83,8 @@ app.put('/playlist/users', function(req, res) {
     var users = req.body.users
 
     if(playlistId && users) {
-        db.updatePlaylistUsers(playlistId, users, null)
+        db.addPlaylistUsers(playlistId, users)
+        res.sendStatus(200)
     }
     else {
         res.sendStatus(400)
@@ -97,6 +98,7 @@ app.put('/playlist/songs', function(req, res) {
 
     if(playlistId && playlist) {
         db.updatePlaylistSongs(playlistId, playlist, null)
+        res.sendStatus(200)
     }
     else {
         res.sendStatus(400)
