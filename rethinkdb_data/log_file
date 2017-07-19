@@ -24,3 +24,24 @@
 2017-07-18T23:36:40.305163000 2291.553142s notice: All client connections closed.
 2017-07-18T23:36:40.305170000 2291.553149s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
 2017-07-18T23:36:40.311308000 2291.559287s notice: Storage engine shut down.
+2017-07-19T02:27:12.859216000 40.043417s notice: Running rethinkdb 2.3.5 (CLANG 8.0.0 (clang-800.0.38))...
+2017-07-19T02:27:12.864184000 40.048379s notice: Running on Darwin 16.6.0 x86_64
+2017-07-19T02:27:12.864222000 40.048416s notice: Loading data from directory /Users/charlesgong/Documents/web_workspace/muze/rethinkdb_data
+2017-07-19T02:27:12.881033000 40.065228s info: Automatically using cache size of 2842 MB
+2017-07-19T02:27:12.881434000 40.065629s notice: Listening for intracluster connections on port 29015
+2017-07-19T02:27:12.903495000 40.087690s notice: Listening for client driver connections on port 28015
+2017-07-19T02:27:12.903628000 40.087823s notice: Listening for administrative HTTP connections on port 8080
+2017-07-19T02:27:12.903630000 40.087824s notice: Listening on cluster addresses: 127.0.0.1, ::1
+2017-07-19T02:27:12.903631000 40.087826s notice: Listening on driver addresses: 127.0.0.1, ::1
+2017-07-19T02:27:12.903632000 40.087827s notice: Listening on http addresses: 127.0.0.1, ::1
+2017-07-19T02:27:12.903638000 40.087833s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2017-07-19T02:27:12.903640000 40.087834s notice: Server ready, "Charless_MacBook_Pro_local_ull" c11882f3-a7d3-4747-b667-0de3ad3b28cc
+2017-07-19T02:27:14.105545000 41.289783s info: Table 38c709c9-a2cc-4e52-8c64-6e1ead287225: Starting a new Raft election for term 2.
+2017-07-19T02:27:14.117459000 41.301697s info: Table 38c709c9-a2cc-4e52-8c64-6e1ead287225: This server is Raft leader for term 2. Latest log index is 2.
+2017-07-19T02:27:14.226467000 41.410705s info: Table d04f9e26-095c-4e64-afa7-939ac0c8dd98: Starting a new Raft election for term 2.
+2017-07-19T02:27:14.237401000 41.421640s info: Table d04f9e26-095c-4e64-afa7-939ac0c8dd98: This server is Raft leader for term 2. Latest log index is 2.
+2017-07-19T03:19:22.668394000 3169.927197s notice: Server got SIGINT from pid 60737, uid 501; shutting down...
+2017-07-19T03:19:22.668631000 3169.927434s notice: Shutting down client connections...
+2017-07-19T03:19:22.668793000 3169.927596s notice: All client connections closed.
+2017-07-19T03:19:22.668800000 3169.927602s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2017-07-19T03:19:22.673464000 3169.932267s notice: Storage engine shut down.

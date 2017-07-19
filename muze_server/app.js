@@ -1,7 +1,7 @@
 const app = require('express')()
 const bodyParser = require('body-parser')
-const server = require('http').Server(app)
-const io = require('socket.io')(server)
+const server = require('http').createServer(app)
+const skt = require('./socket.js').bind(server)
 const db = require('./database.js')
 const ver = require('./verification.js')
 
@@ -10,7 +10,7 @@ const ver = require('./verification.js')
 db.connect(function() {
     db.observeUsersSharedPlaylists(null)
     db.observePlaylistsSongs(function(playlistData) {
-        emitUpdate(playlistData.id, playlistData)
+        skt.emitUpdate(playlistData.id, playlistData)
     })
 })
 
@@ -45,13 +45,20 @@ app.get('/verification/check', function(req, res) {
                 res.status(error.response.status).json({valid_code: false})
             }
             else {
-                // check if user exists first
-                db.insertUser(phoneNumber, function(userId, err) {
-                    if(err) {
-                        res.sendStatus(500)
+                db.queryUser({phoneNumber: phoneNumber}, function(userId, err) {
+                    if(userId) {
+                        // update APN token
+                        res.status(200).json({valid_code: true, user_id: userId})
                     }
                     else {
-                        res.status(201).json({valid_code: true, user_id: userId})
+                        db.insertUser(phoneNumber, function(userId, err) {
+                            if(err) {
+                                res.sendStatus(500)
+                            }
+                            else {
+                                res.status(201).json({valid_code: true, user_id: userId})
+                            }
+                        })
                     }
                 })
             }
@@ -90,7 +97,7 @@ app.put('/playlist/users', function(req, res) {
     var users = req.body.users
 
     if(playlistId && users) {
-        db.addPlaylistUsers(playlistId, users)
+        db.addPlaylistUsers(playlistId, users, null)
         res.sendStatus(200)
     }
     else {
@@ -105,8 +112,14 @@ app.put('/playlist/songs', function(req, res) {
     var size = req.body.size
 
     if(playlistId && playlist && size) {
-        db.updatePlaylistSongs(playlistId, playlist, size, null)
-        res.sendStatus(200)
+        db.updatePlaylistSongs(playlistId, playlist, size, function(result, err) {
+            if(err) {
+                res.sendStatus(500)
+            }
+            else {
+                res.sendStatus(200)
+            }
+        })
     }
     else {
         res.sendStatus(400)
@@ -115,16 +128,4 @@ app.put('/playlist/songs', function(req, res) {
 
 // Socket
 
-var pl = io.of('/playlists')
-
-pl.on('connection', function(socket) {
-    console.log('a user connected')
-
-    socket.on('room', function(roomId) {
-        socket.join(roomId)
-    })
-})
-
-function emitUpdate(roomId, playlistData) {
-    pl.in(roomId).emit('update', playlistData)
-}
+skt.plOnConnection()
