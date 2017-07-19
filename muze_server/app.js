@@ -1,17 +1,24 @@
-const express = require('express')
+const app = require('express')()
 const bodyParser = require('body-parser')
+const server = require('http').Server(app)
+const io = require('socket.io')(server)
 const db = require('./database.js')
 const ver = require('./verification.js')
 
-const app = express()
+// Database
 
-db.connect()
-
-app.listen(3000, function() {
-    console.log('App listening on port 3000!')
+db.connect(function() {
+    db.observeUsersSharedPlaylists(null)
+    db.observePlaylistsSongs(function(playlistData) {
+        emitUpdate(playlistData.id, playlistData)
+    })
 })
 
 // Endpoints
+
+server.listen(3000, function() {
+    console.log('App listening on port 3000!')
+})
 
 app.get('/', function(req, res) {
     res.send('Hello World!')
@@ -95,12 +102,29 @@ app.use('/playlist/songs', bodyParser.json())
 app.put('/playlist/songs', function(req, res) {
     var playlistId = req.query.playlist_id
     var playlist = req.body.playlist
+    var size = req.body.size
 
-    if(playlistId && playlist) {
-        db.updatePlaylistSongs(playlistId, playlist, null)
+    if(playlistId && playlist && size) {
+        db.updatePlaylistSongs(playlistId, playlist, size, null)
         res.sendStatus(200)
     }
     else {
         res.sendStatus(400)
     }
 })
+
+// Socket
+
+var pl = io.of('/playlists')
+
+pl.on('connection', function(socket) {
+    console.log('a user connected')
+
+    socket.on('room', function(roomId) {
+        socket.join(roomId)
+    })
+})
+
+function emitUpdate(roomId, playlistData) {
+    pl.in(roomId).emit('update', playlistData)
+}

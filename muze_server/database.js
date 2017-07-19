@@ -5,7 +5,7 @@ const host = {host: 'localhost', port: 28015}
 
 var connection = null
 
-exports.connect = function() {
+exports.connect = function(init) {
     rethinkdb.connect(host, function(err, conn) {
         if(err) {
             console.log(err)
@@ -18,15 +18,9 @@ exports.connect = function() {
     })
 }
 
-function init() {
-    observeUsersSharedPlaylists()
-    // observePlaylistsUsers()
-    observePlaylistsSongs()
-}
-
 // Observers
 
-function observeUsersSharedPlaylists() {
+exports.observeUsersSharedPlaylists = function(handler) {
     muzedb.table('users')
     .pluck('id', 'sharedPlaylists')
     .changes()
@@ -70,9 +64,9 @@ function observeUsersSharedPlaylists() {
 //     })
 // }
 
-function observePlaylistsSongs() {
+exports.observePlaylistsSongs = function(handler) {
     muzedb.table('playlists')
-    .pluck('playlist')
+    .pluck('id', 'playlist', 'size')
     .changes()
     .run(connection, function(err, cursor) {
         if(err) {
@@ -85,8 +79,11 @@ function observePlaylistsSongs() {
                 }
                 else {
                     console.log(JSON.stringify(row, null, 2))
-
-                    // call push handler
+                    var playlistData = {}
+                    playlistData.id = row.new_val.id
+                    playlistData.playlist = row.new_val.playlist
+                    playlistData.size = row.new_val.size
+                    handler(playlistData)
                 }
             })
         }
@@ -207,10 +204,13 @@ function addPlaylistUser(playlistId, userId, handler) {
 //     })
 // }
 
-exports.updatePlaylistSongs = function(playlistId, playlist, handler) {
+exports.updatePlaylistSongs = function(playlistId, playlist, size, handler) {
     muzedb.table('playlists')
     .get(playlistId)
-    .update({playlist: playlist})
+    .update({
+        playlist: playlist,
+        size: size
+    })
     .run(connection, function(err, result) {
         if(err) {
             console.log(err)
