@@ -1,5 +1,6 @@
 const rethinkdb = require('rethinkdb')
 const muzedb = rethinkdb.db('muze')
+const util = require('./utility.js')
 
 const host = {host: 'localhost', port: 28015}
 
@@ -34,9 +35,21 @@ exports.observeUsersSharedPlaylists = function(handler) {
                     console.log(error)
                 }
                 else {
-                    console.log(JSON.stringify(row, null, 2))
-
-                    // call push handler
+                    if(util.compareArrays(row.new_val.sharedPlaylists, row.old_val.sharedPlaylists) > 0) {
+                        muzedb.table('users')
+                        .get(row.new_val.id)
+                        .run(connection, function(err, result) {
+                            if(err) {
+                                console.log(err)
+                            }
+                            else {
+                                var userData = {}
+                                userData.id = result.id
+                                userData.apnToken = result.apnToken
+                                handler(userData)
+                            }
+                        })
+                    }
                 }
             })
         }
@@ -57,12 +70,7 @@ exports.observePlaylistsSongs = function(handler) {
                     console.log(error)
                 }
                 else {
-                    console.log(JSON.stringify(row, null, 2))
-                    var playlistData = {}
-                    playlistData.id = row.new_val.id
-                    playlistData.playlist = row.new_val.playlist
-                    playlistData.size = row.new_val.size
-                    handler(playlistData)
+                    handler(row.new_val)
                 }
             })
         }
@@ -80,15 +88,18 @@ exports.queryUser = function(predicate, handler) {
             handler(null, err)
         }
         else {
+            var userId = null
+            var e = null         
             cursor.each(function(error, row) {
                 if(error) {
                     console.log(error)
-                    handler(null, error)
+                    e = error
                 }
                 else {
-                    console.log(JSON.stringify(row, null, 2))
-                    handler(row.id, null)
+                    userId = row.id
                 }
+            }, function() {
+                handler(userId, e)
             })
         }
     })
@@ -99,7 +110,8 @@ exports.insertUser = function(phoneNumber, handler) {
     .insert({
         phoneNumber: phoneNumber,
         ownedPlaylists: [],
-        sharedPlaylists: []
+        sharedPlaylists: [],
+        apnToken: null
     })
     .run(connection, function(err, result) {
         if(err) {
@@ -107,8 +119,24 @@ exports.insertUser = function(phoneNumber, handler) {
             handler(null, err)
         }
         else {
-            console.log(JSON.stringify(result, null, 2))
             handler(result.generated_keys[0], null)
+        }
+    })
+}
+
+exports.updateAPNToken = function(userId, apnToken, handler) {    
+    muzedb.table('users')
+    .get(userId)
+    .update({
+        apnToken: apnToken
+    })
+    .run(connection, function(err, result) {
+        if(err) {
+            console.log(err)
+            handler(null, err)
+        }
+        else {
+            handler(result, null)
         }
     })
 }
@@ -127,8 +155,6 @@ exports.insertPlaylist = function(creatorId, title, playlist, size, handler) {
             handler(null, err)
         }
         else {
-            console.log(JSON.stringify(result, null, 2))
-
             var playlistId = result.generated_keys[0]
             muzedb.table('users')
             .get(creatorId)
@@ -140,7 +166,6 @@ exports.insertPlaylist = function(creatorId, title, playlist, size, handler) {
                     console.log(err)
                 }
                 else {
-                    console.log(JSON.stringify(result, null, 2))
                     handler(playlistId, null)
                 }
             })
@@ -148,13 +173,29 @@ exports.insertPlaylist = function(creatorId, title, playlist, size, handler) {
     })
 }
 
-exports.addPlaylistUsers = function(playlistId, userIds, handler) {
-    for(var i = 0; i < userIds.length; i++) {
-        addPlaylistUser(playlistId, userIds[i].user_id, null)
+exports.addPlaylistUsers = function(playlistId, phoneNumbers, handler) {
+    for(var i = 0; i < phoneNumbers.length; i++) {
+        muzedb.table('users')
+        .filter({phoneNumber: phoneNumbers[i].phone_number})
+        .run(connection, function(err, cursor) {
+            if(err) {
+                console.log(err)
+            }
+            else {
+                cursor.each(function(error, row) {
+                    if(error) {
+                        console.log(error)
+                    }
+                    else {
+                        addPlaylistUser(row.id, playlistId, null)
+                    }
+                })
+            }
+        })
     }
 }
 
-function addPlaylistUser(playlistId, userId, handler) {
+function addPlaylistUser(userId, playlistId, handler) {
     muzedb.table('users')
     .get(userId)
     .update({
@@ -164,11 +205,24 @@ function addPlaylistUser(playlistId, userId, handler) {
         if(err) {
             console.log(err)
         }
+    })
+}
+
+exports.deletePlaylistUser = function(playlistId, userId, handler) {
+    muzedb.table('users')
+    .get(userId)
+    .update({
+        sharedPlaylists: rethinkdb.row('sharedPlaylists').difference([playlistId])
+    })
+    .run(connection, function(err, result) {
+        if(err) {
+            console.log(err)
+            handler(null, err)
+        }
         else {
-            console.log(JSON.stringify(result, null, 2))
+            handler(result, null)
         }
     })
-    
 }
 
 exports.updatePlaylistSongs = function(playlistId, playlist, size, handler) {
@@ -184,7 +238,6 @@ exports.updatePlaylistSongs = function(playlistId, playlist, size, handler) {
             handler(null, err)
         }
         else {
-            console.log(JSON.stringify(result, null, 2))
             handler(result, null)
         }
     })

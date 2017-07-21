@@ -18,7 +18,7 @@ Socket.prototype.plOnConnection = function() {
     })
 }
 
-Socket.prototype.emitUpdate = function(roomId, playlistData) {
+Socket.prototype.onEmitUpdate = function(roomId, playlistData) {
    this.pl.in(roomId).emit('update', playlistData)
 }
 

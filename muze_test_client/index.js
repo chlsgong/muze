@@ -4,7 +4,7 @@ var socket = io.connect('http://localhost:3000/playlists')
 
 socket.on('connect', function() {
     console.log('connect')
-    socket.emit('room', 'ecc57559-fbb1-4110-95a8-0fb4f8dbb896')
+    socket.emit('room', '0012ec1d-b331-4dfa-91b1-78986891f5f9')
 })
 
 socket.on('connect_error', function(error) {

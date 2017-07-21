@@ -2,15 +2,19 @@ const app = require('express')()
 const bodyParser = require('body-parser')
 const server = require('http').createServer(app)
 const skt = require('./socket.js').bind(server)
+const apn = require('./apn.js')()
 const db = require('./database.js')
 const ver = require('./verification.js')
 
 // Database
 
 db.connect(function() {
-    db.observeUsersSharedPlaylists(null)
+    db.observeUsersSharedPlaylists(function(userData) {
+        console.log('Sent APN')
+        apn.sendPlaylist(userData.apnToken, userData)
+    })
     db.observePlaylistsSongs(function(playlistData) {
-        skt.emitUpdate(playlistData.id, playlistData)
+        skt.plEmitUpdate(playlistData.id, playlistData)
     })
 })
 
@@ -26,6 +30,7 @@ app.get('/', function(req, res) {
 
 app.post('/verification/code', function(req, res) {
     var phoneNumber = req.query.phone_number
+
     if(phoneNumber) {
         ver.sendCode(phoneNumber)
         res.sendStatus(200)
@@ -38,8 +43,9 @@ app.post('/verification/code', function(req, res) {
 app.get('/verification/check', function(req, res) {
     var code = req.query.code
     var phoneNumber = req.query.phone_number
+    var apnToken = req.query.apn_token
 
-    if(code && phoneNumber) {
+    if(code && phoneNumber && apnToken) {
         ver.checkCode(phoneNumber, code, function(response, error) {
             if(error) {
                 res.status(error.response.status).json({valid_code: false})
@@ -47,8 +53,14 @@ app.get('/verification/check', function(req, res) {
             else {
                 db.queryUser({phoneNumber: phoneNumber}, function(userId, err) {
                     if(userId) {
-                        // update APN token
-                        res.status(200).json({valid_code: true, user_id: userId})
+                        db.updateAPNToken(userId, apnToken, function(result, err) {
+                            if(err) {
+                                res.sendStatus(500)
+                            }
+                            else {
+                                res.status(200).json({valid_code: true, user_id: userId})
+                            }
+                        })
                     }
                     else {
                         db.insertUser(phoneNumber, function(userId, err) {
@@ -94,11 +106,38 @@ app.post('/playlist', function(req, res) {
 app.use('/playlist/users', bodyParser.json())
 app.put('/playlist/users', function(req, res) {
     var playlistId = req.query.playlist_id
-    var users = req.body.users
+    var phoneNumbers = req.body.phone_numbers
 
-    if(playlistId && users) {
-        db.addPlaylistUsers(playlistId, users, null)
-        res.sendStatus(200)
+    if(playlistId && phoneNumbers) {
+        db.addPlaylistUsers(playlistId, phoneNumbers, null)
+        res.sendStatus(202)
+    }
+    else {
+        res.sendStatus(400)
+    }
+})
+
+app.use('/playlist/users', bodyParser.json())
+app.delete('/playlist/users', function(req, res) {
+    var playlistId = req.query.playlist_id
+    var phoneNumber = req.query.phone_number
+
+    if(playlistId && phoneNumber) {
+        db.queryUser({phoneNumber: phoneNumber}, function(userId, err) {
+            if(userId) {
+                db.deletePlaylistUser(playlistId, userId, function(result, err) {
+                    if(err) {
+                        res.sendStatus(500)
+                    }
+                    else {
+                        res.sendStatus(200)
+                    }
+                })
+            }
+            else {
+                res.sendStatus(404)
+            }
+        })
     }
     else {
         res.sendStatus(400)
