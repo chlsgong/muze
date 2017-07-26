@@ -11,7 +11,7 @@ const ver = require('./verification.js')
 db.connect(function() {
     db.observeUsersSharedPlaylists(function(userData) {
         console.log('Sent APN')
-        apn.sendPlaylist(userData.apnToken, userData)
+        apn.notifyPlaylist(userData.apnToken, userData)
     })
     db.observePlaylistsSongs(function(playlistData) {
         skt.plEmitUpdate(playlistData.id, playlistData)
@@ -25,6 +25,7 @@ server.listen(3000, function() {
 })
 
 app.get('/', function(req, res) {
+    console.log('Hello World!')
     res.send('Hello World!')
 })
 
@@ -105,7 +106,7 @@ app.post('/playlist', function(req, res) {
 
 app.use('/playlist/users', bodyParser.json())
 app.put('/playlist/users', function(req, res) {
-    var playlistId = req.query.playlist_id
+    var playlistId = req.body.playlist_id
     var phoneNumbers = req.body.phone_numbers
 
     if(playlistId && phoneNumbers) {
@@ -119,8 +120,8 @@ app.put('/playlist/users', function(req, res) {
 
 app.use('/playlist/users', bodyParser.json())
 app.delete('/playlist/users', function(req, res) {
-    var playlistId = req.query.playlist_id
-    var phoneNumber = req.query.phone_number
+    var playlistId = req.body.playlist_id
+    var phoneNumber = req.body.phone_number
 
     if(playlistId && phoneNumber) {
         db.queryUser({phoneNumber: phoneNumber}, function(userId, err) {
@@ -146,7 +147,7 @@ app.delete('/playlist/users', function(req, res) {
 
 app.use('/playlist/songs', bodyParser.json())
 app.put('/playlist/songs', function(req, res) {
-    var playlistId = req.query.playlist_id
+    var playlistId = req.body.playlist_id
     var playlist = req.body.playlist
     var size = req.body.size
 

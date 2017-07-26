@@ -87,3 +87,25 @@
 2017-07-21T01:10:00.368496000 13113.080904s notice: All client connections closed.
 2017-07-21T01:10:00.368500000 13113.080908s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
 2017-07-21T01:10:00.373408000 13113.085817s notice: Storage engine shut down.
+2017-07-24T23:21:51.957198000 40.078206s notice: Running rethinkdb 2.3.5 (CLANG 8.0.0 (clang-800.0.38))...
+2017-07-24T23:21:51.964756000 40.085759s notice: Running on Darwin 16.6.0 x86_64
+2017-07-24T23:21:51.964809000 40.085810s notice: Loading data from directory /Users/charlesgong/Documents/web_workspace/muze/rethinkdb_data
+2017-07-24T23:21:51.986444000 40.107446s info: Automatically using cache size of 3735 MB
+2017-07-24T23:21:51.987004000 40.108006s notice: Listening for intracluster connections on port 29015
+2017-07-24T23:21:52.020416000 40.141418s notice: Listening for client driver connections on port 28015
+2017-07-24T23:21:52.020542000 40.141544s notice: Listening for administrative HTTP connections on port 8080
+2017-07-24T23:21:52.020544000 40.141546s notice: Listening on cluster addresses: 127.0.0.1, ::1
+2017-07-24T23:21:52.020546000 40.141547s notice: Listening on driver addresses: 127.0.0.1, ::1
+2017-07-24T23:21:52.020547000 40.141549s notice: Listening on http addresses: 127.0.0.1, ::1
+2017-07-24T23:21:52.020632000 40.141634s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2017-07-24T23:21:52.020634000 40.141635s notice: Server ready, "Charless_MacBook_Pro_local_ull" c11882f3-a7d3-4747-b667-0de3ad3b28cc
+2017-07-24T23:21:52.164731000 40.285779s notice: A newer version of the RethinkDB server is available: 2.3.6. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2017-07-24T23:21:53.081024000 41.202072s info: Table 38c709c9-a2cc-4e52-8c64-6e1ead287225: Starting a new Raft election for term 5.
+2017-07-24T23:21:53.091732000 41.212780s info: Table 38c709c9-a2cc-4e52-8c64-6e1ead287225: This server is Raft leader for term 5. Latest log index is 11.
+2017-07-24T23:21:53.449790000 41.570838s info: Table d04f9e26-095c-4e64-afa7-939ac0c8dd98: Starting a new Raft election for term 5.
+2017-07-24T23:21:53.460854000 41.581902s info: Table d04f9e26-095c-4e64-afa7-939ac0c8dd98: This server is Raft leader for term 5. Latest log index is 11.
+2017-07-24T23:40:15.282897000 1143.432220s notice: Server got SIGINT from pid 60737, uid 501; shutting down...
+2017-07-24T23:40:15.283042000 1143.432364s notice: Shutting down client connections...
+2017-07-24T23:40:15.283216000 1143.432539s notice: All client connections closed.
+2017-07-24T23:40:15.283224000 1143.432547s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2017-07-24T23:40:15.289013000 1143.438336s notice: Storage engine shut down.

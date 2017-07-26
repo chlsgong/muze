@@ -45,6 +45,7 @@ exports.observeUsersSharedPlaylists = function(handler) {
                             else {
                                 var userData = {}
                                 userData.id = result.id
+                                userData.badgeCount = result.badgeCount
                                 userData.apnToken = result.apnToken
                                 handler(userData)
                             }
@@ -111,6 +112,7 @@ exports.insertUser = function(phoneNumber, handler) {
         phoneNumber: phoneNumber,
         ownedPlaylists: [],
         sharedPlaylists: [],
+        badgeCount: 0,
         apnToken: null
     })
     .run(connection, function(err, result) {
@@ -130,6 +132,37 @@ exports.updateAPNToken = function(userId, apnToken, handler) {
     .update({
         apnToken: apnToken
     })
+    .run(connection, function(err, result) {
+        if(err) {
+            console.log(err)
+            handler(null, err)
+        }
+        else {
+            handler(result, null)
+        }
+    })
+}
+
+exports.updateBadgeCount = function(userId, badgeCount, handler) {
+    muzedb.table('users')
+    .get(userId)
+    .update({
+        badgeCount: badgeCount
+    })
+    .run(connection, function(err, result) {
+        if(err) {
+            console.log(err)
+            handler(null, err)
+        }
+        else {
+            handler(result, null)
+        }
+    })
+}
+
+exports.getUser = function(userId, handler) {
+    muzedb.table('users')
+    .get(userId)
     .run(connection, function(err, result) {
         if(err) {
             console.log(err)
