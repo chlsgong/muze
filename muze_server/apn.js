@@ -11,10 +11,10 @@ APN.prototype.initNotification = function() {
     this.notification.sound = 'ping.aiff'
 }
 
-APN.prototype.send = function(token, message, payload, badge) {
+APN.prototype.send = function(token, message, badge, payload) {
     this.notification.alert = message
     this.notification.payload = payload
-    this.notification.badge = badge
+    this.notification.badge = badge + 1
 
     apnProvider = new apn.Provider({  
         token: {
@@ -38,9 +38,9 @@ APN.prototype.send = function(token, message, payload, badge) {
     })
 }
 
-APN.prototype.notifyPlaylist = function(token, payload) {
+APN.prototype.notifyPlaylist = function(token, badge, payload) {
     var message = 'You have been added to a playlist.'
-    this.send(token, message, payload)
+    this.send(token, message, badge, payload)
 }
 
 module.exports = function() {

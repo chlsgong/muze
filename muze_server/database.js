@@ -34,23 +34,21 @@ exports.observeUsersSharedPlaylists = function(handler) {
                 if(error) {
                     console.log(error)
                 }
-                else {
-                    if(util.compareArrays(row.new_val.sharedPlaylists, row.old_val.sharedPlaylists) > 0) {
-                        muzedb.table('users')
-                        .get(row.new_val.id)
-                        .run(connection, function(err, result) {
-                            if(err) {
-                                console.log(err)
-                            }
-                            else {
-                                var userData = {}
-                                userData.id = result.id
-                                userData.badgeCount = result.badgeCount
-                                userData.apnToken = result.apnToken
-                                handler(userData)
-                            }
-                        })
-                    }
+                else if(row.old_val && util.compareArrays(row.new_val.sharedPlaylists, row.old_val.sharedPlaylists) > 0) {
+                    muzedb.table('users')
+                    .get(row.new_val.id)
+                    .run(connection, function(err, result) {
+                        if(err) {
+                            console.log(err)
+                        }
+                        else {
+                            var userData = {}
+                            userData.id = result.id
+                            userData.badgeCount = result.badgeCount
+                            userData.apnToken = result.apnToken
+                            handler(userData)
+                        }
+                    })
                 }
             })
         }
