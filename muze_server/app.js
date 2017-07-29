@@ -82,7 +82,31 @@ app.get('/verification/check', function(req, res) {
     }
 })
 
+
+app.use('/users', bodyParser.json())
+
+app.get('/users', function(req, res) {
+})
+
+app.put('/users/apntoken', function(req, res) {
+    var userId = req.body.user_id
+    var apnToken = req.body.apn_token
+
+    if(userId && apnToken) {
+        db.updateAPNToken(userId, apnToken, function(result, err) {
+            if(err) {
+                res.sendStatus(500)
+            }
+            else {
+                res.status(200)
+            }
+        })
+    }
+})
+
+
 app.use('/playlist', bodyParser.json())
+
 app.post('/playlist', function(req, res) {
     var creatorId = req.body.creator_id
     var title = req.body.title
@@ -104,7 +128,6 @@ app.post('/playlist', function(req, res) {
     }
 })
 
-app.use('/playlist/users', bodyParser.json())
 app.put('/playlist/users', function(req, res) {
     var playlistId = req.body.playlist_id
     var phoneNumbers = req.body.phone_numbers
@@ -118,7 +141,6 @@ app.put('/playlist/users', function(req, res) {
     }
 })
 
-app.use('/playlist/users', bodyParser.json())
 app.delete('/playlist/users', function(req, res) {
     var playlistId = req.body.playlist_id
     var phoneNumber = req.body.phone_number
@@ -145,7 +167,6 @@ app.delete('/playlist/users', function(req, res) {
     }
 })
 
-app.use('/playlist/songs', bodyParser.json())
 app.put('/playlist/songs', function(req, res) {
     var playlistId = req.body.playlist_id
     var playlist = req.body.playlist

@@ -169,7 +169,19 @@ exports.getUser = function(userId, handler) {
             handler(null, err)
         }
         else {
-            handler(result, null)
+            var user = null
+            var e = null
+            cursor.each(function(error, row) {
+                if(error) {
+                    console.log(error)
+                    e = error
+                }
+                else {
+                    user = row
+                }
+            }, function() {
+                handler(user, e)
+            })
         }
     })
 }
