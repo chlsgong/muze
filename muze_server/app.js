@@ -16,7 +16,14 @@ db.connect(function() {
     db.observePlaylistsSongs(function(playlistData) {
         skt.plEmitUpdate(playlistData.id, playlistData)
     })
+    db.observePlaylistsTitle(function(playlistData) {
+        skt.plTitleEmitUpdate(playlistData.id, playlistData)
+    })
 })
+
+// Socket
+
+skt.plOnConnection()
 
 // Endpoints
 
@@ -86,6 +93,21 @@ app.get('/verification/check', function(req, res) {
 app.use('/users', bodyParser.json())
 
 app.get('/users', function(req, res) {
+    var userId = req.query.user_id
+
+    if(userId) {
+        db.getUser(userId, function(user) {
+            if(user) {
+                res.status(200).json(user)
+            }
+            else {
+                res.sendStatus(404)
+            }
+        })
+    }
+    else {
+        res.sendStatus(400)
+    }
 })
 
 app.put('/users/apntoken', function(req, res) {
@@ -112,19 +134,63 @@ app.post('/playlist', function(req, res) {
     var title = req.body.title
     var playlist = req.body.playlist
     var size = req.body.size
+    var creationTime = new Date()
 
     if(creatorId && title && playlist && size) {
-        db.insertPlaylist(creatorId, title, playlist, size, function(playlistId, err) {
+        db.insertPlaylist(creatorId, playlist, size, creationTime, function(playlistId, err) {
             if(err) {
                 res.sendStatus(500)
             }
             else {
-                res.status(201).json({playlist_id: playlistId})
+                db.insertPlaylistTitle(playlistId, title, creationTime, function(result, err) {
+                    if(err) {
+                        res.sendStatus(500)
+                    }
+                    else {
+                        res.status(201).json({playlist_id: playlistId})
+                    }
+                })
             }
-        })        
+        })
     }
     else {
         res.sendStatus(400)  
+    }
+})
+
+app.get('/playlist', function(req, res) {
+    var playlistId = req.query.playlist_id
+
+    if(playlistId) {
+        db.getPlaylist(playlistId, function(playlist) {
+            if(playlist) {
+                res.status(200).json(playlist)
+            }
+            else {
+                res.sendStatus(404)
+            }
+        })
+    }
+    else {
+        res.sendStatus(400)
+    }
+})
+
+app.get('/playlist/title', function(req, res) {
+    var playlistId = req.query.playlist_id
+
+    if(playlistId) {
+        db.getPlaylistTitle(playlistId, function(playlistTitle) {
+            if(playlistTitle) {
+                res.status(200).json(playlistTitle)
+            }
+            else {
+                res.sendStatus(404)
+            }
+        })
+    }
+    else {
+        res.sendStatus(400)
     }
 })
 
@@ -186,7 +252,3 @@ app.put('/playlist/songs', function(req, res) {
         res.sendStatus(400)
     }
 })
-
-// Socket
-
-skt.plOnConnection()

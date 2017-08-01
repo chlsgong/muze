@@ -68,7 +68,28 @@ exports.observePlaylistsSongs = function(handler) {
                 if(error) {
                     console.log(error)
                 }
-                else {
+                else if(row.new_val) {
+                    handler(row.new_val)
+                }
+            })
+        }
+    })
+}
+
+exports.observePlaylistsTitle = function(handler) {
+    muzedb.table('playlists')
+    .pluck('id', 'title')
+    .changes()
+    .run(connection, function(err, cursor) {
+        if(err) {
+            console.log(err)
+        }
+        else {
+            cursor.each(function(error, row) {
+                if(error) {
+                    console.log(error)
+                }
+                else if(row.new_val) {
                     handler(row.new_val)
                 }
             })
@@ -161,36 +182,21 @@ exports.updateBadgeCount = function(userId, badgeCount, handler) {
 exports.getUser = function(userId, handler) {
     muzedb.table('users')
     .get(userId)
-    .run(connection, function(err, result) {
+    .run(connection, function(err, user) {
         if(err) {
             console.log(err)
-            handler(null, err)
         }
-        else {
-            var user = null
-            var e = null
-            cursor.each(function(error, row) {
-                if(error) {
-                    console.log(error)
-                    e = error
-                }
-                else {
-                    user = row
-                }
-            }, function() {
-                handler(user, e)
-            })
-        }
+        handler(user)
     })
 }
 
-exports.insertPlaylist = function(creatorId, title, playlist, size, handler) {
+exports.insertPlaylist = function(creatorId, playlist, size, creationTime, handler) {
     muzedb.table('playlists')
     .insert({
         creatorId: creatorId,
-        title: title,
         playlist: playlist,
-        size: size
+        size: size,
+        creationTime: creationTime
     })
     .run(connection, function(err, result) {
         if(err) {
@@ -213,6 +219,17 @@ exports.insertPlaylist = function(creatorId, title, playlist, size, handler) {
                 }
             })
         }
+    })
+}
+
+exports.getPlaylist = function(playlistId, handler) {
+    muzedb.table('playlists')
+    .get(playlistId)
+    .run(connection, function(err, playlist) {
+        if(err) {
+            console.log(err)
+        }
+        handler(playlist)
     })
 }
 
@@ -283,5 +300,34 @@ exports.updatePlaylistSongs = function(playlistId, playlist, size, handler) {
         else {
             handler(result, null)
         }
+    })
+}
+
+exports.insertPlaylistTitle = function(playlistId, title, creationTime, handler) {
+    muzedb.table('playlist_titles')
+    .insert({
+        id: playlistId,
+        title: title,
+        creationTime: creationTime
+    })
+    .run(connection, function(err, result) {
+        if(err) {
+            console.log(err)
+            handler(null, err)
+        }
+        else {
+            handler(result, null)
+        }
+    })
+}
+
+exports.getPlaylistTitle = function(playlistId, handler) {
+    muzedb.table('playlist_titles')
+    .get(playlistId)
+    .run(connection, function(err, playlistTitle) {
+        if(err) {
+            console.log(err)
+        }
+        handler(playlistTitle)
     })
 }

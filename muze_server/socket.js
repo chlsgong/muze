@@ -11,15 +11,18 @@ function Socket(server) {
 Socket.prototype.plOnConnection = function() {
     this.pl.on('connection', function(socket) {
         console.log('a user connected')
-
         socket.on('room', function(roomId) {
             socket.join(roomId)
         })
     })
 }
 
-Socket.prototype.onEmitUpdate = function(roomId, playlistData) {
-   this.pl.in(roomId).emit('update', playlistData)
+Socket.prototype.plEmitUpdate = function(roomId, playlistData) {
+    this.pl.in(roomId).emit('updatePlaylist', playlistData)
+}
+
+Socket.prototype.plTitleEmitUpdate = function(roomId, playlistData) {
+    this.pl.in(roomId).emit('updatePlaylistTitle', playlistData)
 }
 
 exports.bind = function(server) {
