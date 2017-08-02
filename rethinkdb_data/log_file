@@ -85,3 +85,21 @@
 2017-08-01T03:27:59.607461000 24097.945909s notice: All client connections closed.
 2017-08-01T03:27:59.607468000 24097.945916s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
 2017-08-01T03:27:59.613720000 24097.952168s notice: Storage engine shut down.
+2017-08-02T01:30:18.402666724 0.189834s notice: Running rethinkdb 2.3.6~0xenial (GCC 5.3.1)...
+2017-08-02T01:30:18.406561217 0.193731s notice: Running on Linux 4.4.0-87-generic x86_64
+2017-08-02T01:30:18.406619380 0.193786s notice: Loading data from directory /home/charles/Documents/workspace/muze/rethinkdb_data
+2017-08-02T01:30:18.481434132 0.268601s info: Automatically using cache size of 6792 MB
+2017-08-02T01:30:18.488852870 0.276019s notice: Listening for intracluster connections on port 29015
+2017-08-02T01:30:18.617852946 0.405020s notice: Listening for client driver connections on port 28015
+2017-08-02T01:30:18.618056174 0.405223s notice: Listening for administrative HTTP connections on port 8080
+2017-08-02T01:30:18.618073394 0.405239s notice: Listening on cluster addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-08-02T01:30:18.618074053 0.405240s notice: Listening on driver addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-08-02T01:30:18.618074622 0.405241s notice: Listening on http addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-08-02T01:30:18.618075182 0.405241s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2017-08-02T01:30:18.618075766 0.405242s notice: Server ready, "x99ubuntu_iib" 8340a648-e19e-4357-b45c-4234ff16637b
+2017-08-02T01:30:20.248569227 2.035736s info: Table 76522b74-6cdf-4e57-8abc-d1528bf7a9a0: Starting a new Raft election for term 2.
+2017-08-02T01:30:20.319691018 2.106858s info: Table 76522b74-6cdf-4e57-8abc-d1528bf7a9a0: This server is Raft leader for term 2. Latest log index is 2.
+2017-08-02T01:30:20.557431763 2.344598s info: Table 523145bc-cdee-4d14-b3cd-f95087d5c275: Starting a new Raft election for term 5.
+2017-08-02T01:30:20.607940988 2.395107s info: Table ba0d9ddc-de49-489d-a0e7-6159b9ba4e1a: Starting a new Raft election for term 5.
+2017-08-02T01:30:20.630887629 2.418054s info: Table 523145bc-cdee-4d14-b3cd-f95087d5c275: This server is Raft leader for term 5. Latest log index is 11.
+2017-08-02T01:30:20.714737334 2.501904s info: Table ba0d9ddc-de49-489d-a0e7-6159b9ba4e1a: This server is Raft leader for term 5. Latest log index is 11.

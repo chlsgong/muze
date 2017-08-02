@@ -24,7 +24,7 @@ exports.connect = function(init) {
 exports.observeUsersSharedPlaylists = function(handler) {
     muzedb.table('users')
     .pluck('id', 'sharedPlaylists')
-    .changes()
+    .changes({includeTypes: true})
     .run(connection, function(err, cursor) {
         if(err) {
             console.log(err)
@@ -34,7 +34,7 @@ exports.observeUsersSharedPlaylists = function(handler) {
                 if(error) {
                     console.log(error)
                 }
-                else if(row.old_val && util.compareArrays(row.new_val.sharedPlaylists, row.old_val.sharedPlaylists) > 0) {
+                else if(row.type == "change" && util.compareArrays(row.new_val.sharedPlaylists, row.old_val.sharedPlaylists) > 0) {
                     muzedb.table('users')
                     .get(row.new_val.id)
                     .run(connection, function(err, result) {
