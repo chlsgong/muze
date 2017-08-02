@@ -80,3 +80,8 @@
 2017-07-31T18:31:31.073206000 7251.923607s info: Table 76522b74-6cdf-4e57-8abc-d1528bf7a9a0: Starting a new Raft election for term 1.
 2017-07-31T18:31:31.073343000 7251.923743s info: Table 76522b74-6cdf-4e57-8abc-d1528bf7a9a0: Added replica on this server.
 2017-07-31T18:31:31.081874000 7251.932275s info: Table 76522b74-6cdf-4e57-8abc-d1528bf7a9a0: This server is Raft leader for term 1. Latest log index is 0.
+2017-08-01T03:27:59.607063000 24097.945510s notice: Server got SIGINT from pid 24268, uid 501; shutting down...
+2017-08-01T03:27:59.607298000 24097.945746s notice: Shutting down client connections...
+2017-08-01T03:27:59.607461000 24097.945909s notice: All client connections closed.
+2017-08-01T03:27:59.607468000 24097.945916s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2017-08-01T03:27:59.613720000 24097.952168s notice: Storage engine shut down.
