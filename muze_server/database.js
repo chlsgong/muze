@@ -236,7 +236,7 @@ exports.getPlaylist = function(playlistId, handler) {
 exports.addPlaylistUsers = function(playlistId, phoneNumbers, handler) {
     for(var i = 0; i < phoneNumbers.length; i++) {
         muzedb.table('users')
-        .filter({phoneNumber: phoneNumbers[i].phone_number})
+        .filter({phoneNumber: phoneNumbers[i]})
         .run(connection, function(err, cursor) {
             if(err) {
                 console.log(err)
