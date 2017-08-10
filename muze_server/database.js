@@ -100,7 +100,7 @@ exports.observePlaylistsTitle = function(handler) {
 // Actions
 
 exports.queryUser = function(predicate, handler) {
-    var user = muzedb.table('users')
+    muzedb.table('users')
     .filter(predicate)
     .run(connection, function(err, cursor) {
         if(err) {
@@ -108,7 +108,7 @@ exports.queryUser = function(predicate, handler) {
             handler(null, err)
         }
         else {
-            var userId = null
+            var user = null
             var e = null         
             cursor.each(function(error, row) {
                 if(error) {
@@ -116,10 +116,10 @@ exports.queryUser = function(predicate, handler) {
                     e = error
                 }
                 else {
-                    userId = row.id
+                    user = row
                 }
             }, function() {
-                handler(userId, e)
+                handler(user, e)
             })
         }
     })
@@ -230,6 +230,34 @@ exports.getPlaylist = function(playlistId, handler) {
             console.log(err)
         }
         handler(playlist)
+    })
+}
+
+exports.getPlaylistUsers = function(playlistId, handler) {
+    muzedb.table('users')
+    .filter(function(user) {
+        return user("ownedPlaylists").contains(playlistId).or(user("sharedPlaylists").contains(playlistId))
+    })
+    .run(connection, function(err, cursor) {
+        if(err) {
+            console.log(err)
+            handler(null, err)
+        }
+        else {
+            var users = []
+            var e = null         
+            cursor.each(function(error, row) {
+                if(error) {
+                    console.log(error)
+                    e = error
+                }
+                else {
+                    users.push({"id": row.id, "phoneNumber": row.phoneNumber})
+                }
+            }, function() {
+                handler(users, e)
+            })
+        }
     })
 }
 

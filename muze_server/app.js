@@ -59,8 +59,12 @@ app.get('/verification/check', function(req, res) {
                 res.status(error.response.status).json({valid_code: false})
             }
             else {
-                db.queryUser({phoneNumber: phoneNumber}, function(userId, err) {
-                    if(userId) {
+                db.queryUser({phoneNumber: phoneNumber}, function(user, err) {
+                    var userId = user.id
+                    if(err) {
+                        res.sendStatus(500)
+                    }
+                    else if(userId) {
                         db.updateAPNToken(userId, apnToken, function(result, err) {
                             if(err) {
                                 res.sendStatus(500)
@@ -194,6 +198,24 @@ app.get('/playlist/title', function(req, res) {
     }
 })
 
+app.get('/playlist/users', function(req, res) {
+    var playlistId = req.query.playlist_id
+    
+    if(playlistId) {
+        db.getPlaylistUsers(playlistId, function(users, err) {
+            if(err) {
+                res.sendStatus(500)
+            }
+            else {
+                res.status(200).json({users: users})
+            }
+        })
+    }
+    else {
+        res.sendStatus(400)
+    }
+})
+
 app.put('/playlist/users', function(req, res) {
     var playlistId = req.body.playlist_id
     var phoneNumbers = req.body.phone_numbers
@@ -209,11 +231,26 @@ app.put('/playlist/users', function(req, res) {
 
 app.delete('/playlist/users', function(req, res) {
     var playlistId = req.body.playlist_id
+    var userId = req.body.user_id
     var phoneNumber = req.body.phone_number
 
-    if(playlistId && phoneNumber) {
-        db.queryUser({phoneNumber: phoneNumber}, function(userId, err) {
-            if(userId) {
+    if(playlistId && userId) {
+        db.deletePlaylistUser(playlistId, userId, function(result, err) {
+            if(err) {
+                res.sendStatus(500)
+            }
+            else {
+                res.sendStatus(200)
+            }
+        })
+    }
+    else if(playlistId && phoneNumber) {
+        db.queryUser({phoneNumber: phoneNumber}, function(user, err) {
+            var userId = user.id
+            if(err) {
+                res.sendStatus(500)
+            }
+            else if(userId) {
                 db.deletePlaylistUser(playlistId, userId, function(result, err) {
                     if(err) {
                         res.sendStatus(500)
