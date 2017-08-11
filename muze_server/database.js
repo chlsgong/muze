@@ -77,7 +77,7 @@ exports.observePlaylistsSongs = function(handler) {
 }
 
 exports.observePlaylistsTitle = function(handler) {
-    muzedb.table('playlists')
+    muzedb.table('playlist_titles')
     .pluck('id', 'title')
     .changes()
     .run(connection, function(err, cursor) {
