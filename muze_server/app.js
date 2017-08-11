@@ -51,9 +51,9 @@ app.post('/verification/code', function(req, res) {
 app.get('/verification/check', function(req, res) {
     var code = req.query.code
     var phoneNumber = req.query.phone_number
-    var apnToken = req.query.apn_token
+    var apnToken = req.query.apn_token ? req.query.apn_token : ""
 
-    if(code && phoneNumber && apnToken) {
+    if(code && phoneNumber) {
         ver.checkCode(phoneNumber, code, function(response, error) {
             if(error) {
                 res.status(error.response.status).json({valid_code: false})
@@ -136,11 +136,11 @@ app.use('/playlist', bodyParser.json())
 app.post('/playlist', function(req, res) {
     var creatorId = req.body.creator_id
     var title = req.body.title
-    var playlist = req.body.playlist
-    var size = req.body.size
+    var playlist = req.body.playlist ? req.body.playlist : []
+    var size = req.body.size ? req.body.size : 0
     var creationTime = new Date()
 
-    if(creatorId && title && playlist && size) {
+    if(creatorId && title) {
         db.insertPlaylist(creatorId, playlist, size, creationTime, function(playlistId, err) {
             if(err) {
                 res.sendStatus(500)
