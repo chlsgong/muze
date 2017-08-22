@@ -60,17 +60,16 @@ app.get('/verification/check', function(req, res) {
             }
             else {
                 db.queryUser({phoneNumber: phoneNumber}, function(user, err) {
-                    var userId = user.id
                     if(err) {
                         res.sendStatus(500)
                     }
-                    else if(userId) {
-                        db.updateAPNToken(userId, apnToken, function(result, err) {
+                    else if(user) {
+                        db.updateAPNToken(user.id, apnToken, function(result, err) {
                             if(err) {
                                 res.sendStatus(500)
                             }
                             else {
-                                res.status(200).json({valid_code: true, user_id: userId})
+                                res.status(200).json({valid_code: true, user_id: user.id})
                             }
                         })
                     }
