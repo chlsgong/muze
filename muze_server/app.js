@@ -5,6 +5,8 @@ const skt = require('./socket.js').bind(server)
 const apn = require('./apn.js')()
 const db = require('./database.js')
 const ver = require('./verification.js')
+const jwt = require('./jwt.js')()
+
 
 // Database
 
@@ -90,6 +92,12 @@ app.get('/verification/check', function(req, res) {
     else {
         res.sendStatus(400)
     }
+})
+
+
+app.get('/jwtoken', function(req, res) {
+    var token = jwt.getToken()
+    res.status(200).json({jwt: token})
 })
 
 
@@ -217,9 +225,9 @@ app.get('/playlist/users', function(req, res) {
 
 app.put('/playlist/users', function(req, res) {
     var playlistId = req.body.playlist_id
-    var phoneNumbers = req.body.phone_numbers
+    var phoneNumbers = req.body.phone_numbers ? req.body.phone_numbers : []
 
-    if(playlistId && phoneNumbers) {
+    if(playlistId) {
         db.addPlaylistUsers(playlistId, phoneNumbers, null)
         res.sendStatus(202)
     }
@@ -271,10 +279,10 @@ app.delete('/playlist/users', function(req, res) {
 
 app.put('/playlist/songs', function(req, res) {
     var playlistId = req.body.playlist_id
-    var playlist = req.body.playlist
-    var size = req.body.size
+    var playlist = req.body.playlist ? req.body.playlist : []
+    var size = req.body.size ? req.body.size : 0
 
-    if(playlistId && playlist && size) {
+    if(playlistId) {
         db.updatePlaylistSongs(playlistId, playlist, size, function(result, err) {
             if(err) {
                 res.sendStatus(500)
