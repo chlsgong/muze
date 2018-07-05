@@ -1,0 +1,27 @@
+Running rethinkdb 2.3.6~0xenial (GCC 5.3.1)...
+Running on Linux 4.4.0-91-generic x86_64
+Loading data from directory /home/charles/Documents/workspace/muze/rethinkdb_data
+Listening for intracluster connections on port 29015
+Listening for client driver connections on port 28015
+Listening for administrative HTTP connections on port 8080
+Listening on cluster addresses: 127.0.0.1, 127.0.1.1, ::1
+Listening on driver addresses: 127.0.0.1, 127.0.1.1, ::1
+Listening on http addresses: 127.0.0.1, 127.0.1.1, ::1
+To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+Server ready, "x99ubuntu_iib" 8340a648-e19e-4357-b45c-4234ff16637b
+Server got SIGINT from pid 0, uid 0; shutting down...
+Shutting down client connections...
+All client connections closed.
+Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+Storage engine shut down.
+Running rethinkdb 2.3.6~0xenial (GCC 5.3.1)...
+Running on Linux 4.4.0-91-generic x86_64
+Loading data from directory /home/charles/Documents/workspace/muze/rethinkdb_data
+Listening for intracluster connections on port 29015
+Listening for client driver connections on port 28015
+Listening for administrative HTTP connections on port 8080
+Listening on cluster addresses: 127.0.0.1, 127.0.1.1, ::1
+Listening on driver addresses: 127.0.0.1, 127.0.1.1, ::1
+Listening on http addresses: 127.0.0.1, 127.0.1.1, ::1
+To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+Server ready, "x99ubuntu_iib" 8340a648-e19e-4357-b45c-4234ff16637b
