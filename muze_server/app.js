@@ -5,6 +5,8 @@ const skt = require('./socket.js').bind(server)
 const apn = require('./apn.js')()
 const db = require('./database.js')
 const ver = require('./verification.js')
+const jwt = require('./jwt.js')()
+
 
 // Database
 
@@ -51,22 +53,25 @@ app.post('/verification/code', function(req, res) {
 app.get('/verification/check', function(req, res) {
     var code = req.query.code
     var phoneNumber = req.query.phone_number
-    var apnToken = req.query.apn_token
+    var apnToken = req.query.apn_token ? req.query.apn_token : ""
 
-    if(code && phoneNumber && apnToken) {
+    if(code && phoneNumber) {
         ver.checkCode(phoneNumber, code, function(response, error) {
             if(error) {
                 res.status(error.response.status).json({valid_code: false})
             }
             else {
-                db.queryUser({phoneNumber: phoneNumber}, function(userId, err) {
-                    if(userId) {
-                        db.updateAPNToken(userId, apnToken, function(result, err) {
+                db.queryUser({phoneNumber: phoneNumber}, function(user, err) {
+                    if(err) {
+                        res.sendStatus(500)
+                    }
+                    else if(user) {
+                        db.updateAPNToken(user.id, apnToken, function(result, err) {
                             if(err) {
                                 res.sendStatus(500)
                             }
                             else {
-                                res.status(200).json({valid_code: true, user_id: userId})
+                                res.status(200).json({valid_code: true, user_id: user.id})
                             }
                         })
                     }
@@ -87,6 +92,12 @@ app.get('/verification/check', function(req, res) {
     else {
         res.sendStatus(400)
     }
+})
+
+
+app.get('/jwtoken', function(req, res) {
+    var token = jwt.getToken()
+    res.status(200).json({jwt: token})
 })
 
 
@@ -132,11 +143,11 @@ app.use('/playlist', bodyParser.json())
 app.post('/playlist', function(req, res) {
     var creatorId = req.body.creator_id
     var title = req.body.title
-    var playlist = req.body.playlist
-    var size = req.body.size
+    var playlist = req.body.playlist ? req.body.playlist : []
+    var size = req.body.size ? req.body.size : 0
     var creationTime = new Date()
 
-    if(creatorId && title && playlist && size) {
+    if(creatorId && title) {
         db.insertPlaylist(creatorId, playlist, size, creationTime, function(playlistId, err) {
             if(err) {
                 res.sendStatus(500)
@@ -194,11 +205,29 @@ app.get('/playlist/title', function(req, res) {
     }
 })
 
+app.get('/playlist/users', function(req, res) {
+    var playlistId = req.query.playlist_id
+    
+    if(playlistId) {
+        db.getPlaylistUsers(playlistId, function(users, err) {
+            if(err) {
+                res.sendStatus(500)
+            }
+            else {
+                res.status(200).json({users: users})
+            }
+        })
+    }
+    else {
+        res.sendStatus(400)
+    }
+})
+
 app.put('/playlist/users', function(req, res) {
     var playlistId = req.body.playlist_id
-    var phoneNumbers = req.body.phone_numbers
+    var phoneNumbers = req.body.phone_numbers ? req.body.phone_numbers : []
 
-    if(playlistId && phoneNumbers) {
+    if(playlistId) {
         db.addPlaylistUsers(playlistId, phoneNumbers, null)
         res.sendStatus(202)
     }
@@ -209,11 +238,26 @@ app.put('/playlist/users', function(req, res) {
 
 app.delete('/playlist/users', function(req, res) {
     var playlistId = req.body.playlist_id
+    var userId = req.body.user_id
     var phoneNumber = req.body.phone_number
 
-    if(playlistId && phoneNumber) {
-        db.queryUser({phoneNumber: phoneNumber}, function(userId, err) {
-            if(userId) {
+    if(playlistId && userId) {
+        db.deletePlaylistUser(playlistId, userId, function(result, err) {
+            if(err) {
+                res.sendStatus(500)
+            }
+            else {
+                res.sendStatus(200)
+            }
+        })
+    }
+    else if(playlistId && phoneNumber) {
+        db.queryUser({phoneNumber: phoneNumber}, function(user, err) {
+            var userId = user.id
+            if(err) {
+                res.sendStatus(500)
+            }
+            else if(userId) {
                 db.deletePlaylistUser(playlistId, userId, function(result, err) {
                     if(err) {
                         res.sendStatus(500)
@@ -235,10 +279,10 @@ app.delete('/playlist/users', function(req, res) {
 
 app.put('/playlist/songs', function(req, res) {
     var playlistId = req.body.playlist_id
-    var playlist = req.body.playlist
-    var size = req.body.size
+    var playlist = req.body.playlist ? req.body.playlist : []
+    var size = req.body.size ? req.body.size : 0
 
-    if(playlistId && playlist && size) {
+    if(playlistId) {
         db.updatePlaylistSongs(playlistId, playlist, size, function(result, err) {
             if(err) {
                 res.sendStatus(500)

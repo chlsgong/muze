@@ -16,7 +16,7 @@ APN.prototype.send = function(token, message, badge, payload) {
     this.notification.payload = payload
     this.notification.badge = badge + 1
 
-    apnProvider = new apn.Provider({  
+    const apnProvider = new apn.Provider({  
         token: {
             key: 'AuthKey_E9GMVAD5DT.p8',
             keyId: 'E9GMVAD5DT',
