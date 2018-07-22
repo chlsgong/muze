@@ -26,6 +26,7 @@ db.connect(function() {
 // Socket
 
 skt.plOnConnection()
+skt.plOnConnectionError()
 
 // Endpoints
 

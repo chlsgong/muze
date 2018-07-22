@@ -442,3 +442,21 @@
 2018-07-05T18:12:26.255019201 87.796820s notice: All client connections closed.
 2018-07-05T18:12:26.255023640 87.796824s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
 2018-07-05T18:12:26.286196711 87.827998s notice: Storage engine shut down.
+2018-07-22T16:28:44.152484214 0.197449s notice: Running rethinkdb 2.3.6~0xenial (GCC 5.3.1)...
+2018-07-22T16:28:44.186596405 0.231564s notice: Running on Linux 4.4.0-128-generic x86_64
+2018-07-22T16:28:44.186678196 0.231643s notice: Loading data from directory /home/charles/Documents/workspace/muze/rethinkdb_data
+2018-07-22T16:28:44.307008401 0.351973s info: Automatically using cache size of 6518 MB
+2018-07-22T16:28:44.314248785 0.359213s notice: Listening for intracluster connections on port 29015
+2018-07-22T16:28:44.739887380 0.784852s notice: Listening for client driver connections on port 28015
+2018-07-22T16:28:44.740065010 0.785029s notice: Listening for administrative HTTP connections on port 8080
+2018-07-22T16:28:44.740070080 0.785034s notice: Listening on cluster addresses: 127.0.0.1, 127.0.1.1, ::1
+2018-07-22T16:28:44.740073785 0.785038s notice: Listening on driver addresses: 127.0.0.1, 127.0.1.1, ::1
+2018-07-22T16:28:44.740102131 0.785066s notice: Listening on http addresses: 127.0.0.1, 127.0.1.1, ::1
+2018-07-22T16:28:44.740107407 0.785072s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2018-07-22T16:28:44.740113754 0.785078s notice: Server ready, "x99ubuntu_iib" 8340a648-e19e-4357-b45c-4234ff16637b
+2018-07-22T16:28:45.562986885 1.607951s info: Table 523145bc-cdee-4d14-b3cd-f95087d5c275: Starting a new Raft election for term 20.
+2018-07-22T16:28:45.586785443 1.631750s info: Table 523145bc-cdee-4d14-b3cd-f95087d5c275: This server is Raft leader for term 20. Latest log index is 56.
+2018-07-22T16:28:46.098896933 2.143862s info: Table 76522b74-6cdf-4e57-8abc-d1528bf7a9a0: Starting a new Raft election for term 17.
+2018-07-22T16:28:46.124291639 2.169256s info: Table 76522b74-6cdf-4e57-8abc-d1528bf7a9a0: This server is Raft leader for term 17. Latest log index is 48.
+2018-07-22T16:28:46.446651872 2.491616s info: Table ba0d9ddc-de49-489d-a0e7-6159b9ba4e1a: Starting a new Raft election for term 20.
+2018-07-22T16:28:46.504785315 2.549750s info: Table ba0d9ddc-de49-489d-a0e7-6159b9ba4e1a: This server is Raft leader for term 20. Latest log index is 56.

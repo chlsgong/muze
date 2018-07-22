@@ -17,6 +17,12 @@ Socket.prototype.plOnConnection = function() {
     })
 }
 
+Socket.prototype.plOnConnectionError = function() {
+    this.pl.on('connect_error', function(error) {
+        console.log(error)
+    })
+}
+
 Socket.prototype.plEmitUpdate = function(roomId, playlistData) {
     this.pl.in(roomId).emit('updatePlaylist', playlistData)
 }

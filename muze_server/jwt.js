@@ -1,12 +1,13 @@
 const jwt = require('jsonwebtoken')
 const fs = require('fs')
+const path = require('path')
 
 function JWT() {
     this.createToken()
 }
 
 JWT.prototype.createToken = function() {
-    const privateKey = fs.readFileSync('AuthKey_E9GMVAD5DT.p8').toString()
+    const privateKey = fs.readFileSync(path.resolve(__dirname, './AuthKey_E9GMVAD5DT.p8')).toString()
 
     this.jwtToken = jwt.sign({}, privateKey, {
         algorithm: 'ES256',
