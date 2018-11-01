@@ -370,6 +370,6 @@ exports.getTrackIdMapping = function(trackType, trackId) {
     .getAll(trackId, { index: trackType })
     .run(connection)
     .then(function(cursor) {
-        return cursor.toArray().shift()
+        return cursor.toArray()
     })
 }

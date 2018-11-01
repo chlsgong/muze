@@ -311,7 +311,7 @@ app.post('/track/mappings', function(req, res) {
     })
 })
 
-app.get('/track/mapping', function(req, res) {
+app.get('/track/mappings', function(req, res) {
     var trackType = req.query.type
     var trackId = req.query.id
 
@@ -322,7 +322,7 @@ app.get('/track/mapping', function(req, res) {
 
     db.getTrackIdMapping(trackType, trackId)
     .then(function(result) {
-        var mapping = Object.assign({}, result)
+        var mapping = Object.assign({}, result.shift())
         res.status(200).json(mapping)
     })
     .catch(function() {
