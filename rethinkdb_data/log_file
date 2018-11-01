@@ -641,3 +641,12 @@
 2018-11-01T00:53:03.651929610 2274321.789275s info: Table 8bf33d02-ad8f-4255-a721-934ec4693012: Starting a new Raft election for term 1.
 2018-11-01T00:53:03.652233714 2274321.789579s info: Table 8bf33d02-ad8f-4255-a721-934ec4693012: Added replica on this server.
 2018-11-01T00:53:03.658668904 2274321.796014s info: Table 8bf33d02-ad8f-4255-a721-934ec4693012: This server is Raft leader for term 1. Latest log index is 0.
+2018-11-01T01:21:33.694003640 2276031.831349s info: Table 8bf33d02-ad8f-4255-a721-934ec4693012: Configuration is changing.
+2018-11-01T01:21:53.882231608 2276052.019577s info: Table 8bf33d02-ad8f-4255-a721-934ec4693012: Configuration is changing.
+2018-11-01T01:27:05.312224716 2276363.449570s notice: Removing file /home/charles/workspace/muze/rethinkdb_data/8bf33d02-ad8f-4255-a721-934ec4693012
+2018-11-01T01:27:05.312245517 2276363.449591s info: Table 8bf33d02-ad8f-4255-a721-934ec4693012: Deleted the table.
+2018-11-01T01:27:26.630691195 2276384.768037s info: Table ca0ac2b0-71fe-47a6-9bd4-aee6ee37ed03: Starting a new Raft election for term 1.
+2018-11-01T01:27:26.630878197 2276384.768224s info: Table ca0ac2b0-71fe-47a6-9bd4-aee6ee37ed03: Added replica on this server.
+2018-11-01T01:27:26.637463990 2276384.774810s info: Table ca0ac2b0-71fe-47a6-9bd4-aee6ee37ed03: This server is Raft leader for term 1. Latest log index is 0.
+2018-11-01T01:27:40.112789740 2276398.250135s info: Table ca0ac2b0-71fe-47a6-9bd4-aee6ee37ed03: Configuration is changing.
+2018-11-01T01:27:45.619711305 2276403.757057s info: Table ca0ac2b0-71fe-47a6-9bd4-aee6ee37ed03: Configuration is changing.
