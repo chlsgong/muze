@@ -460,3 +460,184 @@
 2018-07-22T16:28:46.124291639 2.169256s info: Table 76522b74-6cdf-4e57-8abc-d1528bf7a9a0: This server is Raft leader for term 17. Latest log index is 48.
 2018-07-22T16:28:46.446651872 2.491616s info: Table ba0d9ddc-de49-489d-a0e7-6159b9ba4e1a: Starting a new Raft election for term 20.
 2018-07-22T16:28:46.504785315 2.549750s info: Table ba0d9ddc-de49-489d-a0e7-6159b9ba4e1a: This server is Raft leader for term 20. Latest log index is 56.
+2018-10-05T17:07:41.884345083 0.021691s notice: Running rethinkdb 2.3.6~0xenial (GCC 5.3.1)...
+2018-10-05T17:07:41.886231612 0.023579s notice: Running on Linux 4.4.0-137-generic x86_64
+2018-10-05T17:07:41.886263212 0.023609s notice: Loading data from directory /home/charles/workspace/muze/rethinkdb_data
+2018-10-05T17:07:41.905675013 0.043021s info: Automatically using cache size of 6367 MB
+2018-10-05T17:07:41.907355939 0.044701s notice: Listening for intracluster connections on port 29015
+2018-10-05T17:07:41.953725958 0.091072s notice: Listening for client driver connections on port 28015
+2018-10-05T17:07:41.953962862 0.091309s notice: Listening for administrative HTTP connections on port 8080
+2018-10-05T17:07:41.954586972 0.091933s notice: Listening on cluster addresses: 127.0.0.1, 10.0.0.4, ::1, fe80::20d:3aff:fe71:df9c%2
+2018-10-05T17:07:41.955141880 0.092488s notice: Listening on driver addresses: 127.0.0.1, 10.0.0.4, ::1, fe80::20d:3aff:fe71:df9c%2
+2018-10-05T17:07:41.955450785 0.092796s notice: Listening on http addresses: 127.0.0.1, 10.0.0.4, ::1, fe80::20d:3aff:fe71:df9c%2
+2018-10-05T17:07:41.955456185 0.092801s notice: Server ready, "x99ubuntu_iib" 8340a648-e19e-4357-b45c-4234ff16637b
+2018-10-05T17:07:43.531675917 1.669022s info: Table 523145bc-cdee-4d14-b3cd-f95087d5c275: Starting a new Raft election for term 21.
+2018-10-05T17:07:43.540027847 1.677373s info: Table 523145bc-cdee-4d14-b3cd-f95087d5c275: This server is Raft leader for term 21. Latest log index is 60.
+2018-10-05T17:07:43.632694983 1.770041s info: Table ba0d9ddc-de49-489d-a0e7-6159b9ba4e1a: Starting a new Raft election for term 21.
+2018-10-05T17:07:43.640251800 1.777597s info: Table ba0d9ddc-de49-489d-a0e7-6159b9ba4e1a: This server is Raft leader for term 21. Latest log index is 59.
+2018-10-05T17:07:43.853416203 1.990762s info: Table 76522b74-6cdf-4e57-8abc-d1528bf7a9a0: Starting a new Raft election for term 18.
+2018-10-05T17:07:43.911517804 2.048864s info: Table 76522b74-6cdf-4e57-8abc-d1528bf7a9a0: This server is Raft leader for term 18. Latest log index is 51.
+2018-10-06T11:16:09.732301535 65307.869647s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-06T20:41:09.700851828 99207.838198s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-07T15:20:53.574907936 166391.712253s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-07T20:07:05.391544201 183563.528890s notice: Someone asked for the nonwhitelisted file "/script".  If this should be accessible, add it to the static web assets.
+2018-10-08T03:26:48.066122807 209946.203469s notice: Someone asked for the nonwhitelisted file "/images/logo.gif".  If this should be accessible, add it to the static web assets.
+2018-10-08T03:26:48.570116959 209946.707463s notice: Someone asked for the nonwhitelisted file "/fdsrwe".  If this should be accessible, add it to the static web assets.
+2018-10-08T03:26:49.097304130 209947.234650s notice: Someone asked for the nonwhitelisted file "/qnfxcjqr".  If this should be accessible, add it to the static web assets.
+2018-10-08T03:26:49.636774871 209947.774121s notice: Someone asked for the nonwhitelisted file "/currentsetting.htm".  If this should be accessible, add it to the static web assets.
+2018-10-08T03:26:50.642952150 209948.780299s notice: Someone asked for the nonwhitelisted file "/winbox.png".  If this should be accessible, add it to the static web assets.
+2018-10-08T03:26:51.146663298 209949.284009s notice: Someone asked for the nonwhitelisted file "/login.html".  If this should be accessible, add it to the static web assets.
+2018-10-08T03:26:51.676588607 209949.813934s notice: Someone asked for the nonwhitelisted file "/device_description.xml".  If this should be accessible, add it to the static web assets.
+2018-10-08T03:26:52.227673809 209950.365019s notice: Someone asked for the nonwhitelisted file "/cgi-bin/user/Config.cgi".  If this should be accessible, add it to the static web assets.
+2018-10-08T03:26:52.771765414 209950.909111s notice: Someone asked for the nonwhitelisted file "/current_config/passwd".  If this should be accessible, add it to the static web assets.
+2018-10-08T11:15:58.376622135 238096.513968s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-09T11:03:15.270982982 323733.408329s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-09T18:12:43.950925926 349502.088272s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-09T18:14:47.615898750 349625.753244s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-10T04:21:22.158528952 386020.295875s notice: Someone asked for the nonwhitelisted file "/HNAP1/".  If this should be accessible, add it to the static web assets.
+2018-10-10T07:10:02.495513854 396140.632860s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-10T12:10:32.805204404 414170.942550s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-10T15:26:19.271049016 425917.408394s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-10T16:28:33.810163275 429651.947509s notice: Someone asked for the nonwhitelisted file "/HNAP1/".  If this should be accessible, add it to the static web assets.
+2018-10-10T18:01:02.345218105 435200.482564s notice: Someone asked for the nonwhitelisted file "/HNAP1/".  If this should be accessible, add it to the static web assets.
+2018-10-10T18:50:31.755341111 438169.892687s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-11T08:49:38.710467290 488516.847814s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-11T09:21:11.578931547 490409.716277s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-11T09:34:29.620494491 491207.757841s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-11T16:04:11.259461108 514589.396807s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-11T22:29:15.344311600 537693.481669s notice: Someone asked for the nonwhitelisted file "/v1/agent/self".  If this should be accessible, add it to the static web assets.
+2018-10-11T23:51:38.771454612 542636.908800s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-12T04:04:21.323064080 557799.460410s notice: Someone asked for the nonwhitelisted file "/systemInfo".  If this should be accessible, add it to the static web assets.
+2018-10-13T10:55:13.720751033 668851.858108s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-13T11:35:09.436099642 671247.573445s notice: Someone asked for the nonwhitelisted file "/robots.txt".  If this should be accessible, add it to the static web assets.
+2018-10-13T11:35:09.504441989 671247.641787s notice: Someone asked for the nonwhitelisted file "/sitemap.xml".  If this should be accessible, add it to the static web assets.
+2018-10-13T11:35:09.572076127 671247.709422s notice: Someone asked for the nonwhitelisted file "/.well-known/security.txt".  If this should be accessible, add it to the static web assets.
+2018-10-13T12:55:12.277151214 676050.414497s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-13T13:02:17.643726476 676475.781072s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-13T17:40:16.957540434 693155.094887s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-13T17:40:17.667428843 693155.804774s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-13T18:00:07.972926612 694346.110273s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-13T19:36:33.593285039 700131.730631s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-13T19:36:34.569959324 700132.707305s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-14T00:25:28.573358475 717466.710705s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-14T00:25:29.081226878 717467.218572s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-14T00:35:02.279013968 718040.416360s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-14T00:35:02.629656812 718040.767002s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-14T06:18:07.805520878 738625.942867s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-14T06:18:08.030216612 738626.167562s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-14T06:51:20.049735735 740618.187081s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-14T06:51:24.456252775 740622.593599s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-14T09:02:04.679487532 748462.816833s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-14T09:02:05.437274438 748463.574620s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-14T10:49:41.187624321 754919.324970s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-14T10:49:45.009670011 754923.147016s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-14T12:07:19.889554619 759578.026900s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-14T14:13:16.190598506 767134.327944s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-14T14:13:16.819237440 767134.956583s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-14T14:14:45.113303742 767223.250650s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-14T15:45:37.059479172 772675.196825s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-14T16:16:08.354825606 774506.492171s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-14T16:16:09.927789792 774508.065136s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-14T22:53:45.990010415 798364.127368s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-14T22:53:49.264082593 798367.401428s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-14T23:18:42.997529644 799861.134875s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-14T23:18:43.605600558 799861.742946s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-14T23:22:55.162893746 800113.300241s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-14T23:22:58.552817153 800116.690163s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-15T00:55:36.904488996 805675.041835s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-15T00:55:37.372352137 805675.509699s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-15T01:05:24.065608977 806262.202955s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-15T01:05:24.489264694 806262.626611s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-15T12:35:59.133284625 847697.270630s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-15T15:13:30.386866739 857148.524212s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-15T15:13:31.120506545 857149.257864s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-15T19:39:48.404803995 873126.542150s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-15T19:39:48.956632705 873127.093978s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-15T22:23:18.612439035 882936.749785s notice: Someone asked for the nonwhitelisted file "/wallet.dat".  If this should be accessible, add it to the static web assets.
+2018-10-15T23:17:09.679930635 886167.817277s notice: Someone asked for the nonwhitelisted file "/wallets/wallet.dat".  If this should be accessible, add it to the static web assets.
+2018-10-16T00:13:20.837614075 889538.974960s notice: Someone asked for the nonwhitelisted file "/robots.txt".  If this should be accessible, add it to the static web assets.
+2018-10-16T00:13:27.194478804 889545.331824s notice: Someone asked for the nonwhitelisted file "/.well-known/security.txt".  If this should be accessible, add it to the static web assets.
+2018-10-16T01:17:33.895401990 893392.032748s notice: Someone asked for the nonwhitelisted file "/.bitcoin/wallet.dat".  If this should be accessible, add it to the static web assets.
+2018-10-16T03:17:42.522582498 900600.659928s notice: Someone asked for the nonwhitelisted file "/.bitcoin/wallets/wallet.dat".  If this should be accessible, add it to the static web assets.
+2018-10-16T04:09:00.641444048 903678.778790s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-16T04:09:00.988389458 903679.125735s notice: Someone asked for the nonwhitelisted file "/bea_wls_deployment_internal".  If this should be accessible, add it to the static web assets.
+2018-10-16T05:28:44.423354360 908462.560700s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-16T10:03:04.543716569 924922.681062s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-16T13:19:13.810685222 936691.948031s notice: Someone asked for the nonwhitelisted file "/invoker/readonly".  If this should be accessible, add it to the static web assets.
+2018-10-17T16:13:19.031912217 1033537.169258s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-17T16:43:09.036372208 1035327.173719s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-17T16:59:45.646701302 1036323.784047s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-17T17:14:57.236673634 1037235.374019s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-17T21:15:50.951497860 1051689.088844s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-18T05:37:39.725865746 1081797.863211s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-18T08:35:11.259524511 1092449.396870s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-18T12:07:07.423642670 1105165.560988s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-19T12:00:40.006388223 1191178.143734s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-20T01:18:43.732074722 1239061.869420s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-20T03:51:14.404538834 1248212.541884s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-20T04:38:21.561609608 1251039.698955s notice: Someone asked for the nonwhitelisted file "/script".  If this should be accessible, add it to the static web assets.
+2018-10-20T07:08:39.864648812 1260058.001994s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-20T16:00:27.790806926 1291965.928153s notice: Someone asked for the nonwhitelisted file "/login.cgi".  If this should be accessible, add it to the static web assets.
+2018-10-20T17:17:59.232518994 1296617.369865s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-21T02:17:32.481461744 1328990.618808s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-21T08:02:37.045947579 1349695.183293s notice: Someone asked for the nonwhitelisted file "/HNAP1/".  If this should be accessible, add it to the static web assets.
+2018-10-21T09:42:45.940601715 1355704.077947s notice: Someone asked for the nonwhitelisted file "/login.cgi".  If this should be accessible, add it to the static web assets.
+2018-10-22T04:25:47.109999814 1423085.247346s notice: Someone asked for the nonwhitelisted file "/systemInfo".  If this should be accessible, add it to the static web assets.
+2018-10-22T04:52:08.800446160 1424666.937792s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-22T11:18:19.485857162 1447837.623203s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-22T13:20:17.776284926 1455155.913631s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-22T15:18:26.420586623 1462244.557932s notice: Someone asked for the nonwhitelisted file "/robots.txt".  If this should be accessible, add it to the static web assets.
+2018-10-22T15:18:29.326525750 1462247.463871s notice: Someone asked for the nonwhitelisted file "/sitemap.xml".  If this should be accessible, add it to the static web assets.
+2018-10-22T18:22:05.018743080 1473263.156089s notice: Someone asked for the nonwhitelisted file "/HNAP1/".  If this should be accessible, add it to the static web assets.
+2018-10-22T20:49:37.903049596 1482116.040395s notice: Someone asked for the nonwhitelisted file "//jmx-console/HtmlAdaptor".  If this should be accessible, add it to the static web assets.
+2018-10-23T13:12:14.698745170 1541072.836091s notice: Someone asked for the nonwhitelisted file "/HNAP1/".  If this should be accessible, add it to the static web assets.
+2018-10-23T16:01:36.387728374 1551234.525074s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-23T17:05:43.222469998 1555081.359816s notice: Someone asked for the nonwhitelisted file "/tmUnblock.cgi".  If this should be accessible, add it to the static web assets.
+2018-10-23T23:21:51.415782104 1577649.553128s notice: Someone asked for the nonwhitelisted file "/tmUnblock.cgi".  If this should be accessible, add it to the static web assets.
+2018-10-24T01:40:47.111070859 1585985.248417s notice: Someone asked for the nonwhitelisted file "/login.cgi".  If this should be accessible, add it to the static web assets.
+2018-10-24T04:22:47.035303760 1595705.172650s notice: Someone asked for the nonwhitelisted file "/index.do".  If this should be accessible, add it to the static web assets.
+2018-10-24T04:22:47.521115640 1595705.658461s notice: Someone asked for the nonwhitelisted file "/index.action".  If this should be accessible, add it to the static web assets.
+2018-10-24T04:22:47.990754998 1595706.128101s notice: Someone asked for the nonwhitelisted file "/index.jsp".  If this should be accessible, add it to the static web assets.
+2018-10-24T04:22:48.445452051 1595706.582798s notice: Someone asked for the nonwhitelisted file "/login.do".  If this should be accessible, add it to the static web assets.
+2018-10-24T04:22:48.982987142 1595707.120333s notice: Someone asked for the nonwhitelisted file "/login.action".  If this should be accessible, add it to the static web assets.
+2018-10-24T04:22:49.469331030 1595707.606677s notice: Someone asked for the nonwhitelisted file "/login.jsp".  If this should be accessible, add it to the static web assets.
+2018-10-24T04:22:50.021155718 1595708.158501s notice: Someone asked for the nonwhitelisted file "/main.jsp".  If this should be accessible, add it to the static web assets.
+2018-10-24T04:22:50.474837556 1595708.612183s notice: Someone asked for the nonwhitelisted file "/default.jsp".  If this should be accessible, add it to the static web assets.
+2018-10-24T04:22:50.961299245 1595709.098645s notice: Someone asked for the nonwhitelisted file "/register.jsp".  If this should be accessible, add it to the static web assets.
+2018-10-24T04:22:51.452350198 1595709.589696s notice: Someone asked for the nonwhitelisted file "/login/login.jsp".  If this should be accessible, add it to the static web assets.
+2018-10-24T04:22:51.945884684 1595710.083230s notice: Someone asked for the nonwhitelisted file "/login/indexAction.action".  If this should be accessible, add it to the static web assets.
+2018-10-24T04:22:52.702598989 1595710.839944s notice: Someone asked for the nonwhitelisted file "/indexAction.action".  If this should be accessible, add it to the static web assets.
+2018-10-24T06:27:47.616781969 1603205.754128s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-24T18:19:07.877714550 1645886.015060s notice: Someone asked for the nonwhitelisted file "/admin/connection".  If this should be accessible, add it to the static web assets.
+2018-10-24T21:54:37.467470168 1658815.604816s notice: Someone asked for the nonwhitelisted file "/phpMyAdmin/scripts/setup.php".  If this should be accessible, add it to the static web assets.
+2018-10-25T06:17:48.200869657 1689006.338215s notice: Someone asked for the nonwhitelisted file "/login.cgi".  If this should be accessible, add it to the static web assets.
+2018-10-25T12:58:24.447003287 1713042.584349s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-26T10:14:49.228544338 1789627.365897s notice: Someone asked for the nonwhitelisted file "/script".  If this should be accessible, add it to the static web assets.
+2018-10-26T20:47:11.419423138 1827569.556769s notice: Someone asked for the nonwhitelisted file "/phpmyadmin/scripts/setup.php".  If this should be accessible, add it to the static web assets.
+2018-10-27T14:35:04.476823297 1891642.614169s notice: Someone asked for the nonwhitelisted file "/systemInfo".  If this should be accessible, add it to the static web assets.
+2018-10-27T23:37:30.500505211 1924188.637852s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-28T06:21:11.921762700 1948410.059108s notice: Someone asked for the nonwhitelisted file "/phpMyAdmin/scripts/setup.php".  If this should be accessible, add it to the static web assets.
+2018-10-28T10:11:58.405169651 1962256.542515s notice: Someone asked for the nonwhitelisted file "/index.do".  If this should be accessible, add it to the static web assets.
+2018-10-28T10:11:58.907115204 1962257.044461s notice: Someone asked for the nonwhitelisted file "/index.action".  If this should be accessible, add it to the static web assets.
+2018-10-28T16:37:21.517715771 1985379.655062s notice: Someone asked for the nonwhitelisted file "/robots.txt".  If this should be accessible, add it to the static web assets.
+2018-10-28T16:37:21.584245278 1985379.721591s notice: Someone asked for the nonwhitelisted file "/sitemap.xml".  If this should be accessible, add it to the static web assets.
+2018-10-28T16:37:21.651131889 1985379.788478s notice: Someone asked for the nonwhitelisted file "/.well-known/security.txt".  If this should be accessible, add it to the static web assets.
+2018-10-28T17:03:28.526646435 1986946.663992s notice: Someone asked for the nonwhitelisted file "/HNAP1/".  If this should be accessible, add it to the static web assets.
+2018-10-29T14:08:20.051440605 2062838.188786s notice: Someone asked for the nonwhitelisted file "/robots.txt".  If this should be accessible, add it to the static web assets.
+2018-10-29T14:08:20.636028352 2062838.773374s notice: Someone asked for the nonwhitelisted file "/sitemap.xml".  If this should be accessible, add it to the static web assets.
+2018-10-29T14:08:25.719864703 2062843.857210s notice: Someone asked for the nonwhitelisted file "/.well-known/security.txt".  If this should be accessible, add it to the static web assets.
+2018-10-29T14:11:04.563655547 2063002.701001s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-30T04:19:14.278658235 2113892.416004s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-31T02:12:19.737917512 2192677.875263s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-31T02:40:05.735469137 2194343.872815s notice: Someone asked for the nonwhitelisted file "/cgi-bin/nobody/Search.cgi".  If this should be accessible, add it to the static web assets.
+2018-10-31T12:04:34.591732767 2228212.729078s notice: Someone asked for the nonwhitelisted file "/tmUnblock.cgi".  If this should be accessible, add it to the static web assets.
+2018-10-31T12:05:41.221659474 2228279.359005s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-31T12:26:31.129582310 2229529.266928s notice: Someone asked for the nonwhitelisted file "/tmUnblock.cgi".  If this should be accessible, add it to the static web assets.
+2018-10-31T13:03:28.671418471 2231746.808764s notice: Someone asked for the nonwhitelisted file "/tmUnblock.cgi".  If this should be accessible, add it to the static web assets.
+2018-10-31T13:25:46.033953993 2233084.171300s notice: Someone asked for the nonwhitelisted file "/tmUnblock.cgi".  If this should be accessible, add it to the static web assets.
+2018-10-31T17:16:33.139287581 2246931.276633s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-31T18:27:55.064481678 2251213.201827s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-10-31T20:41:00.390645212 2259198.527991s notice: Someone asked for the nonwhitelisted file "/manager/html".  If this should be accessible, add it to the static web assets.
+2018-11-01T00:53:03.651929610 2274321.789275s info: Table 8bf33d02-ad8f-4255-a721-934ec4693012: Starting a new Raft election for term 1.
+2018-11-01T00:53:03.652233714 2274321.789579s info: Table 8bf33d02-ad8f-4255-a721-934ec4693012: Added replica on this server.
+2018-11-01T00:53:03.658668904 2274321.796014s info: Table 8bf33d02-ad8f-4255-a721-934ec4693012: This server is Raft leader for term 1. Latest log index is 0.
