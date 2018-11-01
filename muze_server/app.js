@@ -95,14 +95,27 @@ app.get('/verification/check', function(req, res) {
     }
 })
 
-
 app.get('/jwtoken', function(req, res) {
     var token = jwt.getToken()
     res.status(200).json({jwt: token})
 })
 
-
 app.use('/users', bodyParser.json())
+app.put('/users/apntoken', function(req, res) {
+    var userId = req.body.user_id
+    var apnToken = req.body.apn_token
+
+    if(userId && apnToken) {
+        db.updateAPNToken(userId, apnToken, function(result, err) {
+            if(err) {
+                res.sendStatus(500)
+            }
+            else {
+                res.status(200)
+            }
+        })
+    }
+})
 
 app.get('/users', function(req, res) {
     var userId = req.query.user_id
@@ -122,25 +135,7 @@ app.get('/users', function(req, res) {
     }
 })
 
-app.put('/users/apntoken', function(req, res) {
-    var userId = req.body.user_id
-    var apnToken = req.body.apn_token
-
-    if(userId && apnToken) {
-        db.updateAPNToken(userId, apnToken, function(result, err) {
-            if(err) {
-                res.sendStatus(500)
-            }
-            else {
-                res.status(200)
-            }
-        })
-    }
-})
-
-
 app.use('/playlist', bodyParser.json())
-
 app.post('/playlist', function(req, res) {
     var creatorId = req.body.creator_id
     var title = req.body.title
@@ -296,4 +291,41 @@ app.put('/playlist/songs', function(req, res) {
     else {
         res.sendStatus(400)
     }
+})
+
+app.use('/track/mappings', bodyParser.json())
+app.post('/track/mappings', function(req, res) {
+    var trackIdMappings = req.body.id_mappings
+
+    if(!trackIdMappings) {
+        res.sendStatus(400)
+        return
+    }
+
+    db.insertTrackIdMappings(trackIdMappings)
+    .then(function() {
+        res.sendStatus(204)
+    })
+    .catch(function() {
+        res.sendStatus(500)
+    })
+})
+
+app.get('/track/mapping', function(req, res) {
+    var trackType = req.query.type
+    var trackId = req.query.id
+
+    if(!trackType || !trackId) {
+        res.sendStatus(400)
+        return
+    }
+
+    db.getTrackIdMapping(trackType, trackId)
+    .then(function(result) {
+        var mapping = Object.assign({}, result)
+        res.status(200).json(mapping)
+    })
+    .catch(function() {
+        res.sendStatus(500)
+    })
 })

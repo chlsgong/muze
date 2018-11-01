@@ -358,3 +358,18 @@ exports.getPlaylistTitle = function(playlistId, handler) {
         handler(playlistTitle)
     })
 }
+
+exports.insertTrackIdMappings = function(trackIds) {
+    return muzedb.table('track_id_mappings')
+    .insert(trackIds)
+    .run(connection)
+}
+
+exports.getTrackIdMapping = function(trackType, trackId) {
+    return muzedb.table('track_id_mappings')
+    .getAll(trackId, { index: trackType })
+    .run(connection)
+    .then(function(cursor) {
+        return cursor.toArray().shift()
+    })
+}
