@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "apn": "^2.1.5",
-    "axios": "^0.16.2",
+    "axios": "^0.21.1",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "jsonwebtoken": "^7.4.3",
